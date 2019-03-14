@@ -102,6 +102,7 @@ public class T01_SelfDefinedLinkedList<E> {
 			first = next;
 		} else {
 			prev.next = next;
+			rm.prev = null;
 		}
 
 		// 说明删除的是最后一个节点
@@ -109,9 +110,11 @@ public class T01_SelfDefinedLinkedList<E> {
 			last = prev;
 		} else {
 			next.prev = prev;
+			rm.next = null;
 		}
-		size--;
+		rm.value = null;
 		rm = null;
+		size--;
 	}
 
 	@Override

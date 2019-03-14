@@ -82,25 +82,17 @@ public class T02_SelfDefinedHashMap<K, V> {
 				 *  此处遍历不同于之前的遍历，此处的遍历是针对该元素下一元素的key来进行判断，
 				 *  从而便于更改此处元素的next属性
 				 */
-				while (node.next != null) {
-					if (node.next.hash == hashCode) {
-						node.next = node.next.next;
-						size--;
-						break;
-					}
-					node = node.next;
-				}
-				// 另外一种更清晰的写法
-				/*Node<K, V> tmp = null;
+				Node<K, V> tmp = null;
 				while ((tmp = node.next) != null) {
 					if (tmp.hash == hashCode) {
 						node.next = tmp.next;
+						tmp.next = null;
 						tmp = null;
 						size--;
 						break;
 					}
 					node = tmp;
-				}*/
+				}
 			}
 		}
 	}
