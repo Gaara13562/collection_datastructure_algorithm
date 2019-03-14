@@ -13,9 +13,9 @@ public class T00_SelfDefinedArrayList<E> {
 
 	private static final int DEFAULT_CAPACITY = 10;
 
-	@SuppressWarnings("unchecked")
+	// 用默认长度来初始化 elementData
 	public T00_SelfDefinedArrayList() {
-		this.elementData = (E[]) new Object[DEFAULT_CAPACITY];
+		this(DEFAULT_CAPACITY);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -33,6 +33,10 @@ public class T00_SelfDefinedArrayList<E> {
 		if (this.elementData.length < capacity) {
 			int newCapacity = elementData.length + (elementData.length >> 1) + 1;
 			System.out.println("=== 进入扩容函数 ===，新容量：" + newCapacity);
+			// 如果扩容之后的容量仍然小于所需容量，则直接扩容至所需容量
+			if (newCapacity < capacity) {
+				newCapacity = capacity;
+			}
 			elementData = Arrays.copyOf(elementData, newCapacity);
 		}
 	}
