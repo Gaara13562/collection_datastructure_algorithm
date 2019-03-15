@@ -2,6 +2,7 @@ package t01_collection;
 
 /**
  * 自定义单向链表
+ * 与前述双向节点不同之处：引入了头节点（同样也可以引入尾节点），让编程更加简单
  */
 public class T04_SingleLinkedList<E> {
 
@@ -19,9 +20,6 @@ public class T04_SingleLinkedList<E> {
 	}
 
 	public Node<E> getNodeByIndex(int index) {
-		if (index < -1 || index >= size) {
-			throw new RuntimeException("索引不合法：" + index);
-		}
 		// 通过设置头节点的方式，避免了双向节点中对于头结点这一特殊情况的判断，使得编程简单了很多
 		Node<E> p = head;
 		while (index-- >= 0) {
@@ -31,6 +29,9 @@ public class T04_SingleLinkedList<E> {
 	}
 
 	public void add(int index, E e) {
+		if (index < 0 || index > size) {
+			throw new RuntimeException("索引不合法：" + index);
+		}
 		// 首先获取 index-1 位置处的节点
 		Node<E> p = getNodeByIndex(index - 1);
 		
