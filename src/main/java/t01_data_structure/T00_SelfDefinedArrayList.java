@@ -1,4 +1,4 @@
-package t01_collection;
+package t01_data_structure;
 
 import java.util.Arrays;
 

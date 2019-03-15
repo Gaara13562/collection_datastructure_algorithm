@@ -1,4 +1,4 @@
-package t01_collection;
+package t01_data_structure;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * 通过栈（双端队列）来实现十进制和二进制的转换
  */
-public class T05_VonversionByDeque {
+public class T05_ConversionByDeque {
 
 	public static int conversion(int input) {
 		Deque<Integer> res = new LinkedList<>();

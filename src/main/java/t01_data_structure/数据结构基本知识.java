@@ -11,4 +11,4 @@
  * 
  * 3. 逻辑结构唯一，数据结构不唯一，运算的实现依赖于数据结构
  */
-package t02_data_structure;
+package t01_data_structure;
