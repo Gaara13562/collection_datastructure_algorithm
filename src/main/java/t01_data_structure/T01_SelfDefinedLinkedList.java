@@ -170,7 +170,7 @@ public class T01_SelfDefinedLinkedList<E> {
 		System.out.println(linkedList);
 	}
 
-	static class Node<E> {
+	private static class Node<E> {
 		Node<E> prev;
 		Node<E> next;
 		E value;

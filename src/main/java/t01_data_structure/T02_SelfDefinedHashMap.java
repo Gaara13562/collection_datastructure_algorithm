@@ -130,7 +130,7 @@ public class T02_SelfDefinedHashMap<K, V> {
 		System.out.println(map);
 	}
 
-	static class Node<K, V> {
+	private static class Node<K, V> {
 		int hash;
 		K key;
 		V value;

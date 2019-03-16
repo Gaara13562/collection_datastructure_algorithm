@@ -68,7 +68,7 @@ public class T04_SingleLinkedList<E> {
 		System.out.println(singleLinkedList);
 	}
 
-	static class Node<E> {
+	private static class Node<E> {
 		E e;
 		Node<E> next;
 
@@ -76,10 +76,10 @@ public class T04_SingleLinkedList<E> {
 			super();
 		}
 
-		public Node(E e) {
+		/*public Node(E e) {
 			super();
 			this.e = e;
-		}
+		}*/
 
 		public Node(E e, Node<E> next) {
 			super();
