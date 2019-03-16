@@ -33,6 +33,8 @@ public class T06_SelfDefinedBinaryTree<E> implements T06_BinaryTreeInterface<E> 
 
 		tree.levelOrderByQueue();
 		tree.inOrderByStack();
+		tree.preOrderByStack();
+		tree.postOrderByStack();
 	}
 
 	public T06_SelfDefinedBinaryTree() {
@@ -169,19 +171,88 @@ public class T06_SelfDefinedBinaryTree<E> implements T06_BinaryTreeInterface<E> 
 
 	@Override
 	public void preOrderByStack() {
-		// TODO Auto-generated method stub
+		System.out.print("先序非递归遍历：[");
+		// 创建栈
+		Deque<Node<E>> stack = new LinkedList<>();
+		Node<E> current = root;
+		while (current != null || !stack.isEmpty()) {
+			while (current != null) {
+				System.out.print(current.value + " ");
+				stack.push(current);
+				current = current.leftChild;
+			}
 
+			if (!stack.isEmpty()) {
+				current = stack.pop();
+				current = current.rightChild;
+			}
+		}
+		System.out.println("]");
 	}
+
 
 	@Override
 	public void postOrderByStack() {
-		// TODO Auto-generated method stub
+		/**
+		 * 参考博客：https://blog.csdn.net/davidddl/article/details/75667092
+		 * 里面通过栈的使用来实现对二叉树的三种遍历，值得学习
+		 * 
+		 */
+		System.out.print("后序非递归遍历：[");
+		Node<E> current = root;
+		if(current != null){
+			Deque<Node<E>> s1 = new LinkedList<>();
+			Deque<Node<E>> s2 = new LinkedList<>();
+			s1.push(current);
+			while(!s1.isEmpty()){
+				current = s1.pop();
+				s2.push(current);
+				if(current.leftChild != null){
+					s1.push(current.leftChild);
+				}
+				if(current.rightChild != null){
+					s1.push(current.rightChild);
+				}
+			}
+			while(!s2.isEmpty()){
+				System.out.print(s2.pop().value + " ");
+			}
+		}
+		/**
+		 * 这里创建了两个栈：stack1 和 stack2，其中：
+		 *   stack1 用于保存当前子树根节点；
+		 *   stack2 用于保存当前节点的右子树是否已经被访问过，True代表尚未访问，False代表已经访问过
+		 *   	如果尚未访问过，则还需要将右子树的根节点进行入栈操作并开始遍历；
+		 *   	如果已经访问过，则直接循环打印并回退至第一个尚未访问过右节点的节点处；
+		 */
+		/*Deque<Node<E>> stack1 = new LinkedList<>();
+		Deque<Boolean> stack2 = new LinkedList<>();
+		Node<E> current = root;
+		while (current != null || !stack1.isEmpty()) {
+			while (current != null) {
+				stack1.push(current);
+				stack2.push(Boolean.TRUE);
+				current = current.leftChild;
+			}
 
+			// 如果队列不为空且右子树已经被访问（即已经入栈），则打印结果至第一个右子树尚未被访问的节点
+			while (!stack1.isEmpty() && !stack2.peek().booleanValue()) {
+				stack2.pop();
+				System.out.print(stack1.pop().value + " ");
+			}
+			
+			// 如果栈不为空而且右子树尚未被访问，则需要将右子树入栈并且开始遍历
+			if (!stack1.isEmpty()) {
+				stack2.pop();
+				stack2.push(Boolean.FALSE);
+				current = stack1.peek().rightChild;
+			}
+		}*/
+		System.out.println("]");
 	}
 
 	/**
-	 * 中心思想： 借助队列Queue，队列中保存每一层的节点， 每次该层节点弹出队列，
-	 * 然后针对弹出的每一个节点，分别获取其左右子节点，然后将子节点加入队列，
+	 * 中心思想： 借助队列Queue，队列中保存每一层的节点， 每次该层节点弹出队列， 然后针对弹出的每一个节点，分别获取其左右子节点，然后将子节点加入队列，
 	 * 如此循环，直至队列中没有节点（也即没有子节点了）
 	 */
 	@Override
@@ -190,16 +261,16 @@ public class T06_SelfDefinedBinaryTree<E> implements T06_BinaryTreeInterface<E> 
 		if (root == null)
 			return;
 		Queue<Node<E>> queue = new LinkedList<>();
-		queue.add(root);
+		queue.offer(root);
 		while (queue.size() != 0) {
 			int len = queue.size();
 			for (int i = 0; i < len; i++) {
 				Node<E> temp = queue.poll();
 				System.out.print(temp.value + " ");
 				if (temp.leftChild != null)
-					queue.add(temp.leftChild);
+					queue.offer(temp.leftChild);
 				if (temp.rightChild != null)
-					queue.add(temp.rightChild);
+					queue.offer(temp.rightChild);
 			}
 		}
 		System.out.println("]");
