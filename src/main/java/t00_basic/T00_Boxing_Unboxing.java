@@ -4,9 +4,6 @@ package t00_basic;
  * 拆箱和装箱操作 参考链接 1)
  * 深入理解JVM之JVM内存区域与内存分配：https://www.cnblogs.com/wangjzh/p/5258254.html 2)
  * 深入剖析Java中的装箱和拆箱：https://www.cnblogs.com/dolphin0520/p/3780005.html
- * 
- * @author 李瑞东
- *
  */
 public class T00_Boxing_Unboxing {
 
@@ -40,5 +37,10 @@ public class T00_Boxing_Unboxing {
 		System.out.println(g == (a + b));
 		System.out.println(g.equals(a + b));
 		System.out.println(g.equals(a + h));
+
+		System.out.println("=============== String 也实现了常量池技术 =================");
+		String aStr = "aa";
+		String bStr = "aa";
+		System.out.println((aStr == bStr) + " == " + aStr.equals(bStr));
 	}
 }
