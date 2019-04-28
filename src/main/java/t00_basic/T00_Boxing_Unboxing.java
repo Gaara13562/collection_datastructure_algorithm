@@ -16,13 +16,13 @@ public class T00_Boxing_Unboxing {
 		Integer i3 = 200;
 		Integer i4 = 200;
 
-		System.out.println(i1 == i2);
-		System.out.println(i3 == i4);
+		System.out.println(i1 == i2); // true
+		System.out.println(i3 == i4); //  false，-128~127范围内的数值会采用常量池技术
 
 		System.out.println("=============== Advanced =================");
 
 		Integer a = 1;
-		Integer b = 2;
+		Integer b = 2; 
 		Integer c = 3;
 		Integer d = 3;
 		Integer e = 321;
@@ -30,17 +30,18 @@ public class T00_Boxing_Unboxing {
 		Long g = 3L;
 		Long h = 2L;
 
-		System.out.println(c == d);
-		System.out.println(e == f);
-		System.out.println(c == (a + b));
-		System.out.println(c.equals(a + b));
-		System.out.println(g == (a + b));
-		System.out.println(g.equals(a + b));
-		System.out.println(g.equals(a + h));
+		System.out.println(c == d); // true，常量池技术
+		System.out.println(e == f); // false，超出范围，不适用常量池技术
+		System.out.println(c == (a + b)); // true，==会自动进行拆箱操作
+		System.out.println(c.equals(a + b)); // true，equal需要类型和数值同时匹配
+		System.out.println(g == (a + b)); // true，拆箱操作之后数值相等，类型此时不重要
+		System.out.println(g.equals(a + b)); // false，类型不匹配
+		System.out.println(g.equals(a + h)); // true，自动将Integer拓展为Long并且进行类型和数值的比较，都相等
 
 		System.out.println("=============== String 也实现了常量池技术 =================");
 		String aStr = "aa";
 		String bStr = "aa";
-		System.out.println((aStr == bStr) + " == " + aStr.equals(bStr));
+		System.out.println((aStr == bStr)); // true，常量池技术
+		System.out.println(aStr.equals(bStr)); // true，类型且值都相等
 	}
 }
