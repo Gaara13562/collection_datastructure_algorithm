@@ -7,6 +7,7 @@ package t00_basic;
  */
 public class T00_Boxing_Unboxing {
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
 
 		System.out.println("=============== Basic =================");
